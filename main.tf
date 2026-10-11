@@ -17,3 +17,14 @@ resource "azurerm_subnet" "management" {
   address_prefixes                = var.management_subnet_address_prefixes
   default_outbound_access_enabled = false
 }
+
+resource "azurerm_network_security_group" "nsg" {
+  name                = var.network_security_group_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_subnet_network_security_group_association" "associate" {
+  subnet_id                 = azurerm_subnet.management.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
