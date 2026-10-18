@@ -33,3 +33,17 @@ variable "network_security_group_name" {
   type        = string
 }
 
+variable "management_network_interface_name" {
+  description = "Name of the management NIC"
+  type        = string
+}
+
+variable "management_ip_configuration_name" {
+  description = "Name of the management NIC IP configuration"
+  type        = string
+}
+
+variable "management_private_ip" {
+  description = "Static private IP address for the management NIC"
+  type        = string
+}
