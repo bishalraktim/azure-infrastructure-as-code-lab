@@ -47,3 +47,14 @@ variable "management_private_ip" {
   description = "Static private IP address for the management NIC"
   type        = string
 }
+
+variable "admin_username" {
+  description = "VM admin name"
+  type        = string
+}
+
+variable "admin_password" {
+  description = "VM login password"
+  type        = string
+  sensitive   = true
+}
