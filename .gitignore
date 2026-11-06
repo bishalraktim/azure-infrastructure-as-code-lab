@@ -22,3 +22,6 @@ override.tf.json
 # Terraform CLI configuration
 .terraformrc
 terraform.rc
+
+# Terraform saved plan files
+*.tfplan

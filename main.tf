@@ -116,6 +116,10 @@ resource "azurerm_virtual_network_gateway" "gateway" {
     subnet_id                     = azurerm_subnet.gateway.id
   }
 
+  custom_route {
+    address_prefixes = []
+  }
+
   vpn_client_configuration {
     address_space = var.vpn_client_address_space
 
