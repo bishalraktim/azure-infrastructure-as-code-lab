@@ -127,5 +127,18 @@ variable "vpn_root_certificate_data" {
   type        = string
 }
 
+# ============================================================
+# NAT Gateway Configuration
+# ============================================================
+
+variable "nat_gateway_public_ip_name" {
+  description = "Name of the NAT Gateway public IP"
+  type        = string
+}
+
+variable "nat_gateway_name" {
+  description = "Name of the NAT Gateway"
+  type        = string
+}
 
 

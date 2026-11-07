@@ -129,3 +129,32 @@ resource "azurerm_virtual_network_gateway" "gateway" {
     }
   }
 }
+
+# ============================================================
+# NAT Gateway Configuration
+# ============================================================
+
+resource "azurerm_public_ip" "nat-pip" {
+  name                = var.nat_gateway_public_ip_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
+resource "azurerm_nat_gateway" "nat" {
+  name                = var.nat_gateway_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name            = "Standard"
+}
+
+resource "azurerm_nat_gateway_public_ip_association" "pip-associate" {
+  nat_gateway_id       = azurerm_nat_gateway.nat.id
+  public_ip_address_id = azurerm_public_ip.nat-pip.id
+}
+
+resource "azurerm_subnet_nat_gateway_association" "nat-gateway" {
+  subnet_id      = azurerm_subnet.management.id
+  nat_gateway_id = azurerm_nat_gateway.nat.id
+}
